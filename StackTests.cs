@@ -1,10 +1,14 @@
-namespace xunit_tdd_example;
+using Xunit;
 
-public class UnitTest1
+public class StackTests
 {
     [Fact]
-    public void Test1()
+    public void EmptyStack_CountIsZero()
     {
-        Assert.True(true);
+        var stack = new Stack();
+
+        var count = stack.Count;
+
+        Assert.Equal(0, count);
     }
 }
