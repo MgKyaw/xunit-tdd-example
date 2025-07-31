@@ -11,6 +11,9 @@ public class Stack
 
     public int Pop()
     {
+        if (Count == 0)
+            throw new InvalidOperationException("The stack is empty");
+
         var lastIndex = Count - 1;
         var result = storage[lastIndex];
         storage.RemoveAt(lastIndex);
