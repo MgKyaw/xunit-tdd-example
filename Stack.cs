@@ -1,13 +1,20 @@
 public class Stack
 {
-    public int Count { get; private set; }
+    readonly List<int> storage = new();
 
-    public void Push(int element) => Count++;
+    public int Count => storage.Count;
+
+    public void Push(int element)
+    {
+        storage.Add(element);
+    }
 
     public int Pop()
     {
-        Count--;
+        var lastIndex = Count - 1;
+        var result = storage[lastIndex];
+        storage.RemoveAt(lastIndex);
 
-        return 42;
+        return result;
     }
 }
