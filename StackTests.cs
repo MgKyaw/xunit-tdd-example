@@ -47,4 +47,15 @@ public class StackTests
 
         Assert.Equal(0, count);
     }
+
+    [Fact]
+    public void PushOne_PopOne_ReturnsPushedItem()
+    {
+        var stack = new Stack();
+        stack.Push(42);
+
+        var result = stack.Pop();
+
+        Assert.Equal(42, result);
+    }
 }
