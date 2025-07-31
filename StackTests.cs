@@ -35,4 +35,16 @@ public class StackTests
 
         Assert.Equal(3, count);
     }
+
+    [Fact]
+    public void PushOne_PopOne_CountIsZero()
+    {
+        var stack = new Stack();
+        stack.Push(42);
+
+        stack.Pop();
+        var count = stack.Count;
+
+        Assert.Equal(0, count);
+    }
 }
