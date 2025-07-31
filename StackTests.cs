@@ -22,4 +22,17 @@ public class StackTests
 
         Assert.Equal(1, count);
     }
+
+    [Fact]
+    public void PushThree_CountIsThree()
+    {
+        var stack = new Stack();
+        stack.Push(2112);
+        stack.Push(42);
+        stack.Push(2600);
+
+        var count = stack.Count;
+
+        Assert.Equal(3, count);
+    }
 }
