@@ -81,6 +81,9 @@ public class StackTests
     {
         var stack = new Stack();
 
-        stack.Pop();
+        var ex = Record.Exception(() => stack.Pop());
+
+        Assert.IsType<InvalidOperationException>(ex);
+        Assert.Equal("The stack is empty", ex.Message);
     }
 }
