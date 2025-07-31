@@ -75,4 +75,12 @@ public class StackTests
         Assert.Equal(42, second);
         Assert.Equal(2112, third);
     }
+
+    [Fact]
+    public void EmptyStack_PopThrows()
+    {
+        var stack = new Stack();
+
+        stack.Pop();
+    }
 }
