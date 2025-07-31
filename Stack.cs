@@ -4,5 +4,10 @@ public class Stack
 
     public void Push(int element) => Count++;
 
-    public void Pop() => Count--;
+    public int Pop()
+    {
+        Count--;
+
+        return 42;
+    }
 }
