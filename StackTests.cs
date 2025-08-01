@@ -86,4 +86,16 @@ public class StackTests
         Assert.IsType<InvalidOperationException>(ex);
         Assert.Equal("The stack is empty", ex.Message);
     }
+
+    [Fact]
+    public void PushOne_Peek_CountIsOne()
+    {
+        var stack = new Stack();
+        stack.Push(42);
+
+        stack.Peek();
+        var count = stack.Count;
+
+        Assert.Equal(1, count);
+    }
 }
