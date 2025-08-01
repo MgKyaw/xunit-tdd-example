@@ -98,4 +98,15 @@ public class StackTests
 
         Assert.Equal(1, count);
     }
+
+    [Fact]
+    public void PushOne_Peek_ReturnsPushedItem()
+    {
+        var stack = new Stack();
+        stack.Push(42);
+
+        var result = stack.Peek();
+
+        Assert.Equal(42, result);
+    }
 }
