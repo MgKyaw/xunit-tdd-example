@@ -21,5 +21,6 @@ public class Stack
         return result;
     }
 
-    public void Peek() { }
+    public int Peek() => 42;
+
 }
