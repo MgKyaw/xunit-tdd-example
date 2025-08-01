@@ -21,7 +21,11 @@ public class Stack
         return result;
     }
 
-    public int Peek() => storage[Count - 1];
+    public int Peek()
+    {
+        if (Count == 0)
+            throw new InvalidOperationException("The stack is empty");
 
-
+        return storage[Count - 1];
+    }
 }
