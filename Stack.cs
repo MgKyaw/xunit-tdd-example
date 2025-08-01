@@ -21,6 +21,7 @@ public class Stack
         return result;
     }
 
-    public int Peek() => 42;
+    public int Peek() => storage[Count - 1];
+
 
 }
