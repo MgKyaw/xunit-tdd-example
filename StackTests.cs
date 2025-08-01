@@ -109,4 +109,21 @@ public class StackTests
 
         Assert.Equal(42, result);
     }
+
+    [Fact]
+    public void PushThree_PeekThree_OnlyReturnsLastPushedItem()
+    {
+        var stack = new Stack();
+        stack.Push(2112);
+        stack.Push(42);
+        stack.Push(2600);
+
+        var first = stack.Peek();
+        var second = stack.Peek();
+        var third = stack.Peek();
+
+        Assert.Equal(2600, first);
+        Assert.Equal(2600, second);
+        Assert.Equal(2600, third);
+    }
 }
