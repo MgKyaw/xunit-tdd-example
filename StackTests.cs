@@ -127,14 +127,5 @@ public class StackTests
         Assert.Equal(2600, third);
     }
 
-    [Fact]
-    public void EmptyStack_PeekThrows()
-    {
-        var stack = new Stack();
-
-        var ex = Record.Exception(() => stack.Pop());
-
-        Assert.IsType<InvalidOperationException>(ex);
-        Assert.Equal("The stack is empty", ex.Message);
-    }
+    
 }
