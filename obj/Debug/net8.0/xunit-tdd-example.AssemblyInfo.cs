@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("xunit-tdd-example")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e673267a6d624d651a9528d08047c7f5788143ca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53858d76fedd8ee5646a915a15f6ea9878cf1f23")]
 [assembly: System.Reflection.AssemblyProductAttribute("xunit-tdd-example")]
 [assembly: System.Reflection.AssemblyTitleAttribute("xunit-tdd-example")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
