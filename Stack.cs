@@ -15,12 +15,11 @@ public class Stack
 
     int GetValue(bool remove)
     {
-        if (Count == 0)
+        var lastIndex = Count - 1;
+        if (lastIndex == -1)
             throw new InvalidOperationException("The stack is empty");
 
-        var lastIndex = Count - 1;
         var result = storage[lastIndex];
-
         if (remove)
             storage.RemoveAt(lastIndex);
 
