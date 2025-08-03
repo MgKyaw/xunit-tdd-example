@@ -9,23 +9,20 @@ public class Stack
         storage.Add(element);
     }
 
-    public int Pop()
+    public int Pop() => GetValue(remove: true);
+
+    public int Peek() => GetValue(remove: false);
+
+    int GetValue(bool remove)
     {
-        if (Count == 0)
+        var lastIndex = Count - 1;
+        if (lastIndex == -1)
             throw new InvalidOperationException("The stack is empty");
 
-        var lastIndex = Count - 1;
         var result = storage[lastIndex];
-        storage.RemoveAt(lastIndex);
+        if (remove)
+            storage.RemoveAt(lastIndex);
 
         return result;
-    }
-
-    public int Peek()
-    {
-        if (Count == 0)
-            throw new InvalidOperationException("The stack is empty");
-
-        return storage[Count - 1];
     }
 }

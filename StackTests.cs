@@ -1,140 +1,126 @@
-using Xunit;
-
 public class StackTests
 {
-    [Fact]
-    public void EmptyStack_CountIsZero()
+    public class EmptyStack
     {
-        var stack = new Stack();
+        readonly Stack stack = new();
 
-        var count = stack.Count;
+        [Fact]
+        public void CountIsZero()
+        {
+            var count = stack.Count;
 
-        Assert.Equal(0, count);
+            Assert.Equal(0, count);
+        }
+
+        [Fact]
+        public void PopThrows()
+        {
+            var ex = Record.Exception(() => stack.Pop());
+
+            Assert.IsType<InvalidOperationException>(ex);
+            Assert.Equal("The stack is empty", ex.Message);
+        }
+
+        [Fact]
+        public void PeekThrows()
+        {
+            var ex = Record.Exception(() => stack.Peek());
+
+            Assert.IsType<InvalidOperationException>(ex);
+            Assert.Equal("The stack is empty", ex.Message);
+        }
     }
 
-    [Fact]
-    public void PushOne_CountIsOne()
+    public class OneItemStack
     {
-        var stack = new Stack();
-        stack.Push(42);
+        readonly Stack stack = new();
 
-        var count = stack.Count;
+        public OneItemStack() => stack.Push(42);
 
-        Assert.Equal(1, count);
+        [Fact]
+        public void CountIsOne()
+        {
+            var count = stack.Count;
+
+            Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void PopOne_CountIsZero()
+        {
+            stack.Pop();
+            var count = stack.Count;
+
+            Assert.Equal(0, count);
+        }
+
+        [Fact]
+        public void PopOne_ReturnsPushedItem()
+        {
+            var result = stack.Pop();
+
+            Assert.Equal(42, result);
+        }
+
+        [Fact]
+        public void PeekOne_CountIsOne()
+        {
+            stack.Peek();
+            var count = stack.Count;
+
+            Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void PeekOne_ReturnsPushedItem()
+        {
+            var result = stack.Peek();
+
+            Assert.Equal(42, result);
+        }
     }
 
-    [Fact]
-    public void PushThree_CountIsThree()
+    public class ThreeItemStack
     {
-        var stack = new Stack();
-        stack.Push(2112);
-        stack.Push(42);
-        stack.Push(2600);
+        readonly Stack stack = new();
 
-        var count = stack.Count;
+        public ThreeItemStack()
+        {
+            stack.Push(2112);
+            stack.Push(42);
+            stack.Push(2600);
+        }
 
-        Assert.Equal(3, count);
-    }
+        [Fact]
+        public void CountIsThree()
+        {
+            var count = stack.Count;
 
-    [Fact]
-    public void PushOne_PopOne_CountIsZero()
-    {
-        var stack = new Stack();
-        stack.Push(42);
+            Assert.Equal(3, count);
+        }
 
-        stack.Pop();
-        var count = stack.Count;
+        [Fact]
+        public void PopThree_ItemsReturnedLastFirst()
+        {
+            var first = stack.Pop();
+            var second = stack.Pop();
+            var third = stack.Pop();
 
-        Assert.Equal(0, count);
-    }
+            Assert.Equal(2600, first);
+            Assert.Equal(42, second);
+            Assert.Equal(2112, third);
+        }
 
-    [Fact]
-    public void PushOne_PopOne_ReturnsPushedItem()
-    {
-        var stack = new Stack();
-        stack.Push(42);
+        [Fact]
+        public void PeekThree_OnlyReturnsLastPushedItem()
+        {
+            var first = stack.Peek();
+            var second = stack.Peek();
+            var third = stack.Peek();
 
-        var result = stack.Pop();
-
-        Assert.Equal(42, result);
-    }
-
-    [Fact]
-    public void PushThree_PopThree_ItemsReturnedLastFirst()
-    {
-        var stack = new Stack();
-        stack.Push(2112);
-        stack.Push(42);
-        stack.Push(2600);
-
-        var first = stack.Pop();
-        var second = stack.Pop();
-        var third = stack.Pop();
-
-        Assert.Equal(2600, first);
-        Assert.Equal(42, second);
-        Assert.Equal(2112, third);
-    }
-
-    [Fact]
-    public void EmptyStack_PopThrows()
-    {
-        var stack = new Stack();
-
-        var ex = Record.Exception(() => stack.Pop());
-
-        Assert.IsType<InvalidOperationException>(ex);
-        Assert.Equal("The stack is empty", ex.Message);
-    }
-
-    [Fact]
-    public void PushOne_Peek_CountIsOne()
-    {
-        var stack = new Stack();
-        stack.Push(42);
-
-        stack.Peek();
-        var count = stack.Count;
-
-        Assert.Equal(1, count);
-    }
-
-    [Fact]
-    public void PushOne_Peek_ReturnsPushedItem()
-    {
-        var stack = new Stack();
-        stack.Push(42);
-
-        var result = stack.Peek();
-
-        Assert.Equal(42, result);
-    }
-
-    [Fact]
-    public void PushThree_PeekThree_OnlyReturnsLastPushedItem()
-    {
-        var stack = new Stack();
-        stack.Push(2112);
-        stack.Push(42);
-        stack.Push(2600);
-
-        var first = stack.Peek();
-        var second = stack.Peek();
-        var third = stack.Peek();
-
-        Assert.Equal(2600, first);
-        Assert.Equal(2600, second);
-        Assert.Equal(2600, third);
-    }
-
-    [Fact]
-    public void EmptyStack_PeekThrows()
-    {
-        var stack = new Stack();
-
-        var ex = Record.Exception(() => stack.Pop());
-
-        Assert.IsType<InvalidOperationException>(ex);
-        Assert.Equal("The stack is empty", ex.Message);
+            Assert.Equal(2600, first);
+            Assert.Equal(2600, second);
+            Assert.Equal(2600, third);
+        }
     }
 }
